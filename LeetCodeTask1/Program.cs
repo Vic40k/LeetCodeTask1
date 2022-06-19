@@ -21,7 +21,8 @@ namespace LeetCodeTask1
         // 383. Ransom Note
         public static bool CanConstruct(string ransomNote, string magazine)
         {
-            List<char> isChecked = new List<char>();
+            char[] isChecked = new char[32];
+            int j = 0;
             foreach (var item in ransomNote)
             {
                 if (!isChecked.Contains(item))
@@ -42,7 +43,8 @@ namespace LeetCodeTask1
 
                     if (ransCount <= magsCount)
                     {
-                        isChecked.Add(item);
+                        isChecked[j] = item;
+                        j++;
                     }
                     else
                     {
