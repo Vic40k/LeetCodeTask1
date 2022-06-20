@@ -14,8 +14,31 @@ namespace LeetCodeTask1
             // 234. Palindrome Linked List
             //Console.WriteLine(IsPalindrome(new ListNode { val = 1, next = new ListNode { val = 2, next = new ListNode { val = 2, next = new ListNode { val = 1 } } } }));
             // 383. Ransom Note
-            Console.WriteLine(CanConstruct("abba", "abbbac"));
+            //Console.WriteLine(CanConstruct("abba", "abbbac"));
+            // 412. Fizz Buzz
+            Console.WriteLine(FizzBuzz(15));
+        }
 
+        // 412. Fizz Buzz
+        public static IList<string> FizzBuzz(int n)
+        {
+            IList<string> result = new List<string>();
+            const string fizz = "Fizz";
+            const string buzz = "Buzz";
+            for (int i = 1; i <= n; ++i)
+            {
+                bool threeDiv = i % 3 == 0;
+                bool fiveDiv = i % 5 == 0;
+                if (threeDiv && fiveDiv)
+                    result.Add(fizz + buzz);
+                else if (threeDiv)
+                    result.Add(fizz);
+                else if (fiveDiv)
+                    result.Add(buzz);
+                else
+                    result.Add(i.ToString());
+            }
+            return result;
         }
 
         // 383. Ransom Note
