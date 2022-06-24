@@ -49,7 +49,27 @@ namespace LeetCodeTask1
             //Console.WriteLine(KWeakestRows(mat,3));
 
             // 1342. Number of Steps to Reduce a Number to Zero
-            Console.WriteLine(NumberOfSteps(14));
+            //Console.WriteLine(NumberOfSteps(14));
+
+            // 1672. Richest Customer Wealth
+            int[][] mat = new int[3][];
+            mat[0] = new int[] { 1, 5 };
+            mat[1] = new int[] { 7, 3 };
+            mat[2] = new int[] { 3, 5 };
+            Console.WriteLine(MaximumWealth(mat));
+        }
+
+        // 1672. Richest Customer Wealth
+        public static int MaximumWealth(int[][] accounts)
+        {
+            int res = 0;
+            foreach (int[] account in accounts)
+            {
+                int sum = account.Sum();
+                if (sum > res)
+                    res = sum;
+            }
+            return res;
         }
 
         // 1342. Number of Steps to Reduce a Number to Zero
