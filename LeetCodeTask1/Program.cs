@@ -9,14 +9,52 @@ namespace LeetCodeTask1
         static void Main(string[] args)
         {
             //Console.WriteLine("Hello World!");
+
+            // Linked list
+            List<int> ints = new() { 1, 2, 3, 4, 5 };
+            ListNode currNode = new();
+            ListNode node = currNode;
+            foreach (int i in ints)
+            {
+                currNode.next = new ListNode() { val = i };
+                currNode = currNode.next;
+                //buff.next = 
+            }
+            node = node.next;
+
             // 13. Roman to Integer
             //Console.WriteLine(RomanToInt("MCMXCIV"));
+
             // 234. Palindrome Linked List
             //Console.WriteLine(IsPalindrome(new ListNode { val = 1, next = new ListNode { val = 2, next = new ListNode { val = 2, next = new ListNode { val = 1 } } } }));
+
             // 383. Ransom Note
             //Console.WriteLine(CanConstruct("abba", "abbbac"));
+
             // 412. Fizz Buzz
-            Console.WriteLine(FizzBuzz(15));
+            //Console.WriteLine(FizzBuzz(15));
+
+            // 876. Middle of the Linked List
+            Console.WriteLine(MiddleNode(node));
+        }
+
+        // 876. Middle of the Linked List
+        public static ListNode MiddleNode(ListNode head)
+        {
+            int i = 0;
+            ListNode p = head;
+            while (p != null)
+            {
+                i++;
+                p = p.next;
+            }
+            p = head;
+
+            for (int c = 0; c < i / 2;c++)
+            {
+                p = p.next;
+            }
+            return p;
         }
 
         // 412. Fizz Buzz
