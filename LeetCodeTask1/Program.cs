@@ -40,13 +40,35 @@ namespace LeetCodeTask1
             // 1337.The K Weakest Rows in a Matrix
             //int[,] mat = new int[5,5];
             //int[,] mat = new int[,] { { 1,1,0,0,0 },{ 1,1,1,1,0 },{ 1,0,0,0,0 },{ 1,1,1,1,1 } };
-            int[][] mat = new int[5][];
-            mat[0] = new int[] { 1, 1, 0, 0, 0 };
-            mat[1] = new int[] { 1, 1, 1, 1, 0 };
-            mat[2] = new int[] { 1, 0, 0, 0, 0 };
-            mat[3] = new int[] { 1, 1, 0, 0, 0 };
-            mat[4] = new int[] { 1, 1, 1, 1, 1 };
-            Console.WriteLine(KWeakestRows(mat,3));
+            //int[][] mat = new int[5][];
+            //mat[0] = new int[] { 1, 1, 0, 0, 0 };
+            //mat[1] = new int[] { 1, 1, 1, 1, 0 };
+            //mat[2] = new int[] { 1, 0, 0, 0, 0 };
+            //mat[3] = new int[] { 1, 1, 0, 0, 0 };
+            //mat[4] = new int[] { 1, 1, 1, 1, 1 };
+            //Console.WriteLine(KWeakestRows(mat,3));
+
+            // 1342. Number of Steps to Reduce a Number to Zero
+            Console.WriteLine(NumberOfSteps(14));
+        }
+
+        // 1342. Number of Steps to Reduce a Number to Zero
+        public static int NumberOfSteps(int num)
+        {
+            int i = 0;
+            while(num >0)
+            {
+                i++;
+                if (num % 2 == 0)
+                {
+                    num /= 2;
+                }
+                else
+                {
+                    num--;
+                }
+            }
+            return i;
         }
 
         // 1337. The K Weakest Rows in a Matrix
