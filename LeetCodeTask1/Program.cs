@@ -35,7 +35,47 @@ namespace LeetCodeTask1
             //Console.WriteLine(FizzBuzz(15));
 
             // 876. Middle of the Linked List
-            Console.WriteLine(MiddleNode(node));
+            //Console.WriteLine(MiddleNode(node));
+
+            // 1337.The K Weakest Rows in a Matrix
+            //int[,] mat = new int[5,5];
+            //int[,] mat = new int[,] { { 1,1,0,0,0 },{ 1,1,1,1,0 },{ 1,0,0,0,0 },{ 1,1,1,1,1 } };
+            int[][] mat = new int[5][];
+            mat[0] = new int[] { 1, 1, 0, 0, 0 };
+            mat[1] = new int[] { 1, 1, 1, 1, 0 };
+            mat[2] = new int[] { 1, 0, 0, 0, 0 };
+            mat[3] = new int[] { 1, 1, 0, 0, 0 };
+            mat[4] = new int[] { 1, 1, 1, 1, 1 };
+            Console.WriteLine(KWeakestRows(mat,3));
+        }
+
+        // 1337. The K Weakest Rows in a Matrix
+        private class IdVal { public int Id; public int Val; }
+        public static int[] KWeakestRows(int[][] mat, int k)
+        {
+            List<IdVal> buff = new();
+            int resLenght = k < mat.Length ? k : mat.Length;
+            int[] result = new int[resLenght];
+
+            for (int i = 0; i < mat.Length; i++)
+            {
+                for (int j = 0; j < mat[i].Length; j++)
+                {
+                    if (j == 0)
+                    {
+                        buff.Add(new IdVal() { Id = i, Val = 0});
+                    }
+                    buff[i].Val += mat[i][j];
+                }
+            }
+            buff = buff.OrderBy(t => t.Val).ToList();
+            if(k > buff.Count)
+                k = buff.Count;
+            for(int i = 0; i < resLenght; i++)
+            {
+                result[i] = buff[i].Id;
+            }
+            return result;
         }
 
         // 876. Middle of the Linked List
