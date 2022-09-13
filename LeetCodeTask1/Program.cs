@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 
 namespace LeetCodeTask1
 {
@@ -11,16 +12,16 @@ namespace LeetCodeTask1
             //Console.WriteLine("Hello World!");
 
             // Linked list
-            List<int> ints = new() { 1, 2, 3, 4, 5 };
-            ListNode currNode = new();
-            ListNode node = currNode;
-            foreach (int i in ints)
-            {
-                currNode.next = new ListNode() { val = i };
-                currNode = currNode.next;
-                //buff.next = 
-            }
-            node = node.next;
+            //List<int> ints = new() { 1, 2, 3, 4, 5 };
+            //ListNode currNode = new();
+            //ListNode node = currNode;
+            //foreach (int i in ints)
+            //{
+            //    currNode.next = new ListNode() { val = i };
+            //    currNode = currNode.next;
+            //    //buff.next = 
+            //}
+            //node = node.next;
 
             // 13. Roman to Integer
             //Console.WriteLine(RomanToInt("MCMXCIV"));
@@ -52,11 +53,144 @@ namespace LeetCodeTask1
             //Console.WriteLine(NumberOfSteps(14));
 
             // 1672. Richest Customer Wealth
-            int[][] mat = new int[3][];
-            mat[0] = new int[] { 1, 5 };
-            mat[1] = new int[] { 7, 3 };
-            mat[2] = new int[] { 3, 5 };
-            Console.WriteLine(MaximumWealth(mat));
+            //int[][] mat = new int[3][];
+            //mat[0] = new int[] { 1, 5 };
+            //mat[1] = new int[] { 7, 3 };
+            //mat[2] = new int[] { 3, 5 };
+            //Console.WriteLine(MaximumWealth(mat));
+
+            // 1. Two Sum
+            //Console.WriteLine(TwoSum(new int[] {2,7,11,15},9));
+
+            // 2. Add Two Numbers
+            //ListNode param1 = new ListNode { val = 1, next = new ListNode { val = 2, next = new ListNode { val = 3, next = new ListNode { val = 4 } } } };
+            //ListNode param2 = new ListNode { val = 5, next = new ListNode { val = 6, next = new ListNode { val = 7, next = new ListNode { val = 8 } } } };
+            //ListNode param1 = new ListNode { val = 9, next = null };
+            //ListNode param2 = new ListNode();
+            //List<int> param2ints = new() {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 };
+            //ListNode currNode = new();
+            //ListNode node = currNode;
+            //foreach (int i in param2ints)
+            //{
+            //    currNode.next = new ListNode() { val = i };
+            //    currNode = currNode.next;
+            //}
+            //param2 = node.next;
+            //Console.WriteLine(AddTwoNumbers(param1, param2));
+
+            // 3. Longest Substring Without Repeating Characters
+            Console.WriteLine(LengthOfLongestSubstring("abcabcbb"));
+        }
+
+        // 2. Add Two Numbers
+        public static ListNode AddTwoNumbers(ListNode l1, ListNode l2)
+        {
+            //int sum1 = 0;
+            //ListNode buff = l1;
+            ////ListNode res = buff;
+            //for (int i = 0; buff != null; i++)
+            //{
+            //    sum1 += buff.val * Convert.ToInt32(Math.Pow((double)10, (double)i));
+            //    buff = buff.next;
+            //}
+            //int sum2 = 0;
+            //buff = l2;
+            //for (int i = 0; buff != null; i++)
+            //{
+            //    sum2 += buff.val * Convert.ToInt32(Math.Pow((double)10, (double)i));
+            //    buff = buff.next;
+            //}
+
+            //int sum3 = sum1 + sum2;
+            //int j = sum3.ToString().Count() - 1;
+            //buff = new();
+            //ListNode res = new();
+            //for (int i = 0; i <= j; i++)
+            //{
+            //    if (i == 0)
+            //    {
+            //        buff = new ListNode { val = sum3 % 10, next = null };
+            //        res = buff;
+            //    }
+            //    else
+            //    {
+            //        buff.next = new ListNode { val = (sum3 / Convert.ToInt32(Math.Pow((double)10, (double)(i)))) % 10, next = null };
+            //        buff = buff.next;
+            //    }
+
+            //}
+            //return res;
+
+            string sum1 = String.Empty, buffString = String.Empty;
+            ListNode buff = l1;
+            while (buff != null)
+            {
+                sum1 += buff.val.ToString();
+                buff = buff.next;
+            }
+
+            buffString = sum1;
+            sum1 = String.Empty;
+            for (int i = 0; i < buffString.Count(); i++)
+            {
+                sum1 += buffString[buffString.Count() - 1 - i];
+            }
+
+            string sum2 = String.Empty;
+            buff = l2;
+            while (buff != null)
+            {
+                sum2 += buff.val.ToString();
+                buff = buff.next;
+            }
+
+            buffString = sum2;
+            sum2 = String.Empty;
+            for (int i = 0; i < buffString.Count(); i++)
+            {
+                sum2 += buffString[buffString.Count() - 1 - i];
+            }
+
+            string sum3 = (BigInteger.Parse(sum1) + BigInteger.Parse(sum2)).ToString();
+            int j = sum3.ToString().Count() - 1;
+            buff = new();
+            ListNode res = new();
+            for (int i = 0; i <= j; i++)
+            {
+                if (i == 0)
+                {
+                    buff = new ListNode { val = Int32.Parse(sum3[sum3.Count()-1].ToString()), next = null };
+                    res = buff;
+                }
+                else
+                {
+                    buff.next = new ListNode { val = Int32.Parse(sum3[sum3.Count() -i - 1].ToString()), next = null };
+                    buff = buff.next;
+                }
+
+            }
+            return res;
+        }
+
+        // 1. Two Sum
+        public static int[] TwoSum(int[] nums, int target)
+        {
+            int[] res = new int[2];
+            for (int i = 0; i < nums.Length; i++)
+            {
+                for (int j = 0; j < nums.Length; j++)
+                {
+                    if (i != j)
+                    {
+                        if (nums[i] + nums[j] == target)
+                        {
+                            res[0] = i;
+                            res[1] = j;
+                        }
+                    }
+                }
+            }
+            return res;
         }
 
         // 1672. Richest Customer Wealth
@@ -311,6 +445,31 @@ namespace LeetCodeTask1
 
             }
             return true;
+        }
+
+        // 3. Longest Substring Without Repeating Characters
+        public static int LengthOfLongestSubstring(string s)
+        {
+            string buff = String.Empty;
+            int lentgh = 0;
+            //foreach (char subStr in s)
+            //{
+            //    foreach (var subStr2 in buff)
+            //    {
+            //        if (buff.Any(t => t == subStr2))
+            //        {
+            //            if (buff.Count() > lentgh)
+            //            {
+            //                lentgh = buff.Count();
+            //            }
+            //            buff = String.Empty;
+            //        }
+            //        buff += subStr.ToString();
+            //        break;
+            //    }
+
+            //}
+            return lentgh;
         }
     }
 }
